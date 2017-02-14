@@ -1,3 +1,7 @@
-/**
- * Created by wanzhen on 14.2.2017.
- */
+import React from 'react';
+
+export const Link = ({name}) => {
+    return (
+        <a href="#">{name}</a>
+    );
+};

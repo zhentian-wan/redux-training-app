@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { VisibleTodoList } from './containers';
-import {AddTodo} from './containers';
+import { VisibleTodoList, AddTodo } from './containers';
+import {Footer} from './components';
 
 export class TodoApp extends Component {
 
@@ -9,6 +9,7 @@ export class TodoApp extends Component {
             <section>
                 <AddTodo />
                 <VisibleTodoList />
+                <Footer />
             </section>
         );
     }
