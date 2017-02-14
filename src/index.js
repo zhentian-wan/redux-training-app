@@ -7,15 +7,7 @@ import './index.css';
 import {createStore} from 'redux';
 import {rootReducer} from './reducers';
 
-const store = createStore(rootReducer, {
-    todos: [
-        {
-            id: 0,
-            name: "redux",
-            completed: false
-        }
-    ]
-});
+const store = createStore(rootReducer);
 
 ReactDOM.render(
     <Provider store={store}>

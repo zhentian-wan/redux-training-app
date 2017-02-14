@@ -1,8 +1,15 @@
 import React from 'react';
+import {Todo} from './todo.component';
 
-export const TodoList = ({todos}) => {
+export const TodoList = ({todos, onTodoClick}) => {
     const list = todos.map(
-        todo => <li key={todo.id}>{todo.name}</li>
+        todo => (
+            <Todo
+                {...todo}
+                key={todo.id}
+                onClick={() => onTodoClick(todo.id)}>
+            </Todo>
+        )
     );
     return (
         <ul>
