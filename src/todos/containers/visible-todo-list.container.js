@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router';
 import { TodoList } from '../components';
 import { toggleTodoAction } from '../../actions'
 
 import { TodosModel } from '../models';
 
-const mapStateToProps = (state) => ({
-    todos: TodosModel.getVisibleTodos(state.visibilityFilter, state.todos)
+const mapStateToProps = (state, {params}) => ({
+    todos: TodosModel.getVisibleTodos(params.filter, state.todos)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
 *
 * mapDispatchToProps: using connect to pass callback to make it available to TodoList component
 * */
-export const VisibleTodoList = connect(
+export const VisibleTodoList = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(TodoList);
+)(TodoList));

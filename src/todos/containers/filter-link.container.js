@@ -1,29 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from '../components'
-import { setVisibilityFilterAction } from '../../actions';
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
-/*
-* For Link component, the only props it needs to know is whether the
-* current link should be achieved or not.
-* */
-const mapStateToProps = (state, ownProps) => ({
-    active: ownProps.filter === state.visibilityFilter
-});
+export const FooterLink = ({ filter, children }) => (
+    <Link
+        to={filter}
+        activeStyle={{
+            textDecoration: 'none',
+            color: 'black',
+        }}
+    >
+        {children}
+    </Link>
+);
 
-/*
-* Once click on the link,  we can dispatch an action
-* to set visibility filter.
-* */
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onLinkClick: () => {
-        dispatch(
-            setVisibilityFilterAction(ownProps.filter)
-        )
-    }
-});
-
-export const FooterLink = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Link);
+FooterLink.propTypes = {
+    filter: PropTypes.oneOf(['all', 'completed', 'open']).isRequired,
+    children: PropTypes.node.isRequired,
+};

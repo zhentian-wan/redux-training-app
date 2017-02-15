@@ -11,7 +11,7 @@ const store = configStore();
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={App}></Route>
+            <Route path="/(:filter)" component={App}></Route>
         </Router>
     </Provider>,
     document.getElementById('root')

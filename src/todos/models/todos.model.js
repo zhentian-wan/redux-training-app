@@ -1,11 +1,11 @@
 
 const getVisibleTodos = (selectedFilter, todos) => {
     switch(selectedFilter) {
-        case 'SHOW_ALL':
+        case 'all':
             return _showAll(todos);
-        case 'SHOW_COMPLETED':
+        case 'completed':
             return _showCompleted(todos);
-        case 'SHOW_OPEN':
+        case 'open':
             return _showInCompleted(todos);
         default:
             return todos;
