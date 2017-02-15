@@ -20,7 +20,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onLinkClick: () => {
-            setVisibilityFilterAction(ownProps.filter)
+            dispatch(
+                setVisibilityFilterAction(ownProps.filter)
+            )
         }
     }
 };

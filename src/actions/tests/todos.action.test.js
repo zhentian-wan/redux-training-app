@@ -1,19 +1,8 @@
 import {store} from '../../store';
+import {addTodoAction, toggleTodoAction, setVisibilityFilterAction} from '../todos.action';
 
 
 describe('Todos Actions test', () => {
-
-   let actions;
-   beforeEach(() => {
-       actions = [
-           _addTodo('redux', 0),
-           _addTodo('react', 1),
-           _toggleTodo(1),
-           _setVisibilityFilter('SHOW_OPEN'),
-           _toggleTodo(1)
-       ];
-   });
-
     it('should initialize', () => {
         const actual = store.getState();
         const expected = {
@@ -24,6 +13,13 @@ describe('Todos Actions test', () => {
     });
 
     it('should work with serials actions', () => {
+        let actions = [
+            addTodoAction('redux'),
+            addTodoAction('react'),
+            toggleTodoAction(1),
+            setVisibilityFilterAction('SHOW_OPEN'),
+            toggleTodoAction(1)
+        ];
         actions.forEach(action => store.dispatch(action));
         const result = store.getState();
         const expected = {
@@ -44,30 +40,3 @@ describe('Todos Actions test', () => {
         expect(result).toEqual(expected);
     });
 });
-
-
-function _addTodo(name, id) {
-    return {
-        type: 'ADD_TODO',
-        payload: {
-            id,
-            name
-        }
-    }
-}
-
-function _toggleTodo(id) {
-    return {
-        type: 'TOGGLE_TODO',
-        payload: id
-    }
-}
-
-function _setVisibilityFilter(filter) {
-    return {
-        type: 'SET_VISIBILITY_FILTER',
-        payload: {
-            filter
-        }
-    };
-}

@@ -8,7 +8,7 @@ export let AddTodo = ({ dispatch }) => {
     let input;
 
     const onButtonClick = () => {
-        addTodoAction(input.value);
+        dispatch(addTodoAction(input.value));
         input.value = "";
     };
 
