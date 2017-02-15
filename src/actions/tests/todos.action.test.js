@@ -14,11 +14,11 @@ describe('Todos Actions test', () => {
 
     it('should work with serials actions', () => {
         let actions = [
-            addTodoAction('redux'),
-            addTodoAction('react'),
-            toggleTodoAction(1),
+            addTodoAction('redux', 1),
+            addTodoAction('react', 2),
+            toggleTodoAction(2),
             setVisibilityFilterAction('SHOW_OPEN'),
-            toggleTodoAction(1)
+            toggleTodoAction(2)
         ];
         actions.forEach(action => store.dispatch(action));
         const result = store.getState();
@@ -26,12 +26,12 @@ describe('Todos Actions test', () => {
             visibilityFilter: 'SHOW_OPEN',
             todos: [
                 {
-                    id: 0,
+                    id: 1,
                     name: 'redux',
                     completed: false
                 },
                 {
-                    id: 1,
+                    id: 2,
                     name: 'react',
                     completed: false
                 }

@@ -5,11 +5,14 @@
   "devDependencies": {
     "expect": "1.20.2",
     "expect-jsx": "3.0.0",
+    "node-uuid": "^1.4.7",
     "react-addons-test-utils": "15.4.2",
     "react-scripts": "0.9.0",
     "redux-devtools": "3.3.2"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
+    "ramda": "^0.23.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "5.0.2",

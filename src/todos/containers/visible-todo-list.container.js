@@ -1,21 +1,17 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {TodoList} from '../components';
-import {toggleTodoAction} from '../../actions'
+import { connect } from 'react-redux';
+import { TodoList } from '../components';
+import { toggleTodoAction } from '../../actions'
 
-import {TodosModel} from '../models';
+import { TodosModel } from '../models';
 
-const mapStateToProps = (state) => {
-    return {
-        todos: TodosModel.getVisibleTodos(state.visibilityFilter, state.todos)
-    };
-};
+const mapStateToProps = (state) => ({
+    todos: TodosModel.getVisibleTodos(state.visibilityFilter, state.todos)
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-      onTodoClick: (id) => dispatch(toggleTodoAction(id))
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+    onTodoClick: (id) => dispatch(toggleTodoAction(id))
+});
 
 /*
 * VisibleTodoList: Will be the container component to render TodoList presentational component.
