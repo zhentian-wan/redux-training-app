@@ -29,8 +29,8 @@ describe('Todos Model tests', () => {
        expect(result).toEqual(expected);
    });
 
-   it('should filter todos according to SHOW_COMPLETED fitler', () => {
-       const selectedFilter = 'SHOW_COMPLETED';
+   it('should filter todos according to "completed" fitler', () => {
+       const selectedFilter = 'completed';
        const result = TodosModel.getVisibleTodos(selectedFilter, todos);
        const expected = [
            {
@@ -42,8 +42,8 @@ describe('Todos Model tests', () => {
        expect(result).toEqual(expected);
    });
 
-   it('should filter todos according to SHOW_OPEN filter', () => {
-      const selectedFilter = 'SHOW_OPEN';
+   it('should filter todos according to "open" filter', () => {
+      const selectedFilter = 'open';
       const result = TodosModel.getVisibleTodos(selectedFilter, todos);
       const expected = [
           {

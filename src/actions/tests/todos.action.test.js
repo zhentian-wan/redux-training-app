@@ -1,12 +1,16 @@
-import {store} from '../../store';
+import {configStore} from '../../store';
 import {addTodoAction, toggleTodoAction, setVisibilityFilterAction} from '../todos.action';
 
 
 describe('Todos Actions test', () => {
+    let store;
+    beforeEach(() => {
+      store = configStore();
+    });
+
     it('should initialize', () => {
         const actual = store.getState();
         const expected = {
-            visibilityFilter: 'SHOW_ALL',
             todos: []
         };
         expect(actual).toEqual(expected);
@@ -17,13 +21,12 @@ describe('Todos Actions test', () => {
             addTodoAction('redux', 1),
             addTodoAction('react', 2),
             toggleTodoAction(2),
-            setVisibilityFilterAction('SHOW_OPEN'),
+           // setVisibilityFilterAction('SHOW_OPEN'),
             toggleTodoAction(2)
         ];
         actions.forEach(action => store.dispatch(action));
         const result = store.getState();
         const expected = {
-            visibilityFilter: 'SHOW_OPEN',
             todos: [
                 {
                     id: 1,
