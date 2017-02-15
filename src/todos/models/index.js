@@ -1,3 +1,2 @@
-/**
- * Created by wanzhen on 14.2.2017.
- */
+
+export {TodosModel} from './todos.model';

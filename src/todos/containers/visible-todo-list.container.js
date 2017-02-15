@@ -1,21 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {TodoList} from '../components';
+import {toggleTodoAction} from '../../actions'
+
+import {TodosModel} from '../models';
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.todos
+        todos: TodosModel.getVisibleTodos(state.visibilityFilter, state.todos)
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      onTodoClick:  (id) => {
-          dispatch({
-              type: 'TOGGLE_TODO',
-              payload: id
-                   });
-      }
+      onTodoClick: toggleTodoAction
   };
 };
 

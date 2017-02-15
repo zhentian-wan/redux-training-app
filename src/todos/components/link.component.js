@@ -1,7 +1,13 @@
 import React from 'react';
 
-export const Link = ({name}) => {
+export const Link = ({ children, active, onLinkClick }) => {
     return (
-        <a href="#">{name}</a>
+        <a href="#" style={{
+            fontWeight: active ?
+                        'bold' :
+                        'normal'
+        }} onClick={onLinkClick}>
+            {children}
+        </a>
     );
 };

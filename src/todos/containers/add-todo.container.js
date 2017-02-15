@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {addTodoAction} from '../../actions'
 
 let nextTodoId = 0;
 
@@ -7,13 +8,7 @@ export let AddTodo = ({ dispatch }) => {
     let input;
 
     const onButtonClick = () => {
-        dispatch({
-                     type: 'ADD_TODO',
-                     payload: {
-                         id: nextTodoId++,
-                         name: input.value
-                     }
-                 });
+        addTodoAction(input.value);
         input.value = "";
     };
 

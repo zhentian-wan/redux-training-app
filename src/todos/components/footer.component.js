@@ -6,10 +6,10 @@ export const Footer = () => (
     <p>
         Show:
         {' '}
-        <FooterLink>ALL</FooterLink>
+        <FooterLink filter="SHOW_ALL">ALL</FooterLink>
         {' '}
-        <FooterLink>Completed</FooterLink>
+        <FooterLink filter="SHOW_COMPLETED">Completed</FooterLink>
         {' '}
-        <FooterLink>Open</FooterLink>
+        <FooterLink filter="SHOW_OPEN">Open</FooterLink>
     </p>
 );
