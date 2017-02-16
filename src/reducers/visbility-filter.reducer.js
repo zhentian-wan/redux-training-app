@@ -1,4 +1,4 @@
-export const VisibilityFilterReducer = (state = "SHOW_ALL", action) => {
+const VisibilityFilterReducer = (state = "SHOW_ALL", action) => {
     switch(action.type) {
         case 'SET_VISIBILITY_FILTER':
             return action.payload.filter;
@@ -6,3 +6,5 @@ export const VisibilityFilterReducer = (state = "SHOW_ALL", action) => {
             return state;
     }
 };
+
+export default VisibilityFilterReducer;

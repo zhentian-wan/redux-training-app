@@ -1,4 +1,4 @@
-import {todosReducer} from '../todos.reducer';
+import todosReducer from '../todos.reducer';
 
 describe('Test Todos reducer', () => {
    test('should have initial state defined', () => {

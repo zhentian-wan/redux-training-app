@@ -1,6 +1,6 @@
-import {todoReducer} from './todo.reducer';
+import todoReducer from './todo.reducer';
 
-export const todosReducer = (state = [], action) => {
+const todosReducer = (state = [], action) => {
     switch(action.type){
         case 'ADD_TODO':
             return [
@@ -15,3 +15,5 @@ export const todosReducer = (state = [], action) => {
             return state;
     }
 };
+
+export default todosReducer;

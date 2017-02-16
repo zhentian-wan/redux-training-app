@@ -1,4 +1,4 @@
-import {VisibilityFilterReducer} from '../visbility-filter.reducer';
+import VisibilityFilterReducer from '../visbility-filter.reducer';
 
 describe('Visibility filter tests', () => {
    it.skip('should return default state', () => {

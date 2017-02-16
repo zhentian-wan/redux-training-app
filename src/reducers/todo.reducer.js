@@ -9,8 +9,10 @@ const toggleTodo = (state, action) => {
     }
 };
 
-
-export const todoReducer = (state = {}, action) => {
+/*
+* Reducer should use default export; selectors can use named export
+* */
+const todoReducer = (state = {}, action) => {
     switch(action.type){
         case 'ADD_TODO':
             return {
@@ -24,3 +26,5 @@ export const todoReducer = (state = {}, action) => {
             return state;
     }
 };
+
+export default todoReducer;
