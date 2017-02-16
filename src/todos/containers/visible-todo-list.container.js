@@ -3,12 +3,27 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 import { TodoList } from '../components';
 import { toggleTodoAction } from '../../actions'
+import {TodosSelector} from '../../reducers';
 
-import { TodosModel } from '../models';
-
+/**
+ * Problem for this mapStateToProps:
+ * it using state.todos as param. So actually it depends on
+ * the state's shape. If next time, we change 'todos' to 'tasks',
+ * we have to update this function call also.
+ *
+ * So what we want is just pass in state, and using 'selector' to
+ * help.
+ *
+ *
+ * const mapStateToProps = (state, {params}) => ({
+    todos: TodosSelector.getVisibleTodos(params.filter, state.todos)
+   });
+ *
+ * */
 const mapStateToProps = (state, {params}) => ({
-    todos: TodosModel.getVisibleTodos(params.filter, state.todos)
+    todos: TodosSelector.getVisibleTodos(params.filter, state)
 });
+
 
 /*
 * This mapDispatchToProps can use shorthand syntax since

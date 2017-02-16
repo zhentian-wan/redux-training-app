@@ -24,6 +24,6 @@ function _showInCompleted(todos) {
     return todos.filter(todo => !todo.completed)
 }
 
-export const TodosModel = {
-    getVisibleTodos
+export const TodosSelector = {
+    getVisibleTodos: (filter, state) => getVisibleTodos(filter, state.todos)
 };

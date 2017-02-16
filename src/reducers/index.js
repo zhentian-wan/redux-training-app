@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux';
-
 import todosReducer from './todos.reducer';
 
 const rootReducer = combineReducers({
@@ -7,3 +6,5 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+
+export {TodosSelector} from './selectors';
