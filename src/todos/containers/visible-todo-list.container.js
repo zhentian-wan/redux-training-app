@@ -10,9 +10,14 @@ const mapStateToProps = (state, {params}) => ({
     todos: TodosModel.getVisibleTodos(params.filter, state.todos)
 });
 
+/*
+* This mapDispatchToProps can use shorthand syntax since
+* 'onTodoClick' & 'toggleTodoAction' both accept one agreement 'id'
+* */
+/*
 const mapDispatchToProps = (dispatch) => ({
     onTodoClick: (id) => dispatch(toggleTodoAction(id))
-});
+});*(
 
 /*
 * VisibleTodoList: Will be the container component to render TodoList presentational component.
@@ -25,5 +30,5 @@ const mapDispatchToProps = (dispatch) => ({
 * */
 export const VisibleTodoList = withRouter(connect(
     mapStateToProps,
-    mapDispatchToProps
+    {onTodoClick: toggleTodoAction}
 )(TodoList));
