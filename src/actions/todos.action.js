@@ -11,7 +11,9 @@ export const addTodoAction = (input, id) => ({
 
 export const toggleTodoAction = (id) => ({
     type: 'TOGGLE_TODO',
-    payload: id
+    payload: {
+        id
+    }
 });
 
 export const setVisibilityFilterAction = (filter) => ({

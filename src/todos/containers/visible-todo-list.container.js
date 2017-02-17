@@ -20,6 +20,7 @@ import {TodosSelector} from '../../reducers';
    });
  *
  * */
+// By using withRouter, we get router's params injected into our function
 const mapStateToProps = (state, {params}) => ({
     todos: TodosSelector.getVisibleTodos(params.filter, state)
 });

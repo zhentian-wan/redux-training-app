@@ -1,6 +1,6 @@
 
 const toggleTodo = (state, action) => {
-    if(action.payload !== state.id) {
+    if(action.payload.id !== state.id) {
         return state;
     }
     return {

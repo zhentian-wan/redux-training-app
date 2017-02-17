@@ -32,7 +32,9 @@ describe('Todo Reducer tests', () => {
             name: 'react',
             completed: true
         };
-        const payload = 0;
+        const payload = {
+            id: 0
+        };
         const result = todoReducer(preState, {type: 'TOGGLE_TODO', payload});
         const expected = {
             id: 0,

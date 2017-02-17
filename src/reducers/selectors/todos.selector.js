@@ -1,19 +1,20 @@
 
 const getVisibleTodos = (selectedFilter, todos) => {
+    const allTodos = _getAllTodos(todos);
     switch(selectedFilter) {
         case 'all':
-            return _showAll(todos);
+            return allTodos;
         case 'completed':
-            return _showCompleted(todos);
+            return _showCompleted(allTodos);
         case 'open':
-            return _showInCompleted(todos);
+            return _showInCompleted(allTodos);
         default:
             return todos;
     }
 };
 
-function _showAll(todos) {
-    return todos;
+function _getAllTodos(todos) {
+    return todos.allIds.map(id => todos.byId[id]);
 }
 
 function _showCompleted(todos) {
