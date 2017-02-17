@@ -1,9 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 import { TodoList } from '../components';
 import { toggleTodoAction } from '../../actions'
 import {TodosSelector} from '../../reducers';
+
+export class VisibleTodoList extends Component {
+    componentDidMount() {
+
+    }
+
+    componentWillUpdate(preProps, nextProps) {
+
+    }
+
+    render() {
+        return (
+            <TodoList
+                {...this.props}
+            />
+        );
+    }
+}
 
 /**
  * Problem for this mapStateToProps:
@@ -44,7 +62,14 @@ const mapDispatchToProps = (dispatch) => ({
 *
 * mapDispatchToProps: using connect to pass callback to make it available to TodoList component
 * */
+/*
 export const VisibleTodoList = withRouter(connect(
     mapStateToProps,
     {onTodoClick: toggleTodoAction}
 )(TodoList));
+*/
+
+VisibleTodoList = withRouter(connect(
+    mapStateToProps,
+    {onTodoClick: toggleTodoAction}
+)(VisibleTodoList));
