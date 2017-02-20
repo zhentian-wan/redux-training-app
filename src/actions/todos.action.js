@@ -48,3 +48,8 @@ export const fetchingTodoFaildAction = (error) => ({
 export const cancelRequestAction = () => ({
     type: 'CANCEL_REQUEST'
 });
+
+export const addTodoSuccessAction = (response) => ({
+    type: 'ADD_TODO_SUCCESS',
+    payload: response
+});

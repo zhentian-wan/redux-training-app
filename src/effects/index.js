@@ -1,2 +1,8 @@
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
-export {fetchingTodoEpic} from './todos.effects';
+import {fetchingTodoEpic, addTodoEpic} from './todos.effects';
+
+const rootEpic = combineEpics(fetchingTodoEpic, addTodoEpic);
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
+export default epicMiddleware;

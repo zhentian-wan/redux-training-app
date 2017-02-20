@@ -1,5 +1,9 @@
 import * as API from '../api';
-import { fetchingTodoSuccessAction, fetchingTodoFaildAction } from '../actions';
+import {
+    fetchingTodoSuccessAction,
+    fetchingTodoFaildAction,
+    addTodoSuccessAction
+} from '../actions';
 
 export const fetchingTodoEpic = action$ =>
     action$.ofType('FETCHING_TODOS')
@@ -12,3 +16,8 @@ export const fetchingTodoEpic = action$ =>
                                     fetchingTodoFaildAction(err, action.payload.filter)
                          );
            });
+
+export const addTodoEpic = action$ =>
+    action$.ofType('ADD_TODO')
+        .switchMap((action) => API.addTodoAPI(action.payload))
+        .map((response) => addTodoSuccessAction(response));

@@ -23,3 +23,26 @@ export const getTodosAPI = (filter) => {
     }
 };
 
+export const addTodoAPI = ({ id, name }) => {
+    /*Call api twice for json-server hack*/
+    return Observable.ajax({
+                               method: 'POST',
+                               url: `${baseURL}/all`,
+                               body: {
+                                   id,
+                                   name,
+                                   completed: false
+                               }
+                           })
+                     .switchMap(() => Observable.ajax({
+                                                          method: 'POST',
+                                                          url: `${baseURL}/open`,
+                                                          body: {
+                                                              id,
+                                                              name,
+                                                              completed: false
+                                                          }
+                                                      }))
+                     .map((data) => data.response);
+};
+

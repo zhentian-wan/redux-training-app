@@ -1,1 +1,1 @@
-export {getTodosAPI} from './todos.service';
+export {getTodosAPI, addTodoAPI} from './todos.service';
