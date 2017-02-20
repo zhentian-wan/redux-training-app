@@ -7,18 +7,29 @@ import { getVisibleTodos } from '../../reducers';
 
 export class VisibleTodoList extends Component {
     componentDidMount() {
+        this.fetchTodos();
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.params.filter !== prevProps.params.filter) {
+            this.fetchTodos();
+        }
+    }
+
+    fetchTodos = () => {
         const { params: { filter = 'all' }, fetchingTodos } = this.props;
         fetchingTodos(filter);
-    }
-
-    componentWillUpdate(preProps, nextProps) {
-
-    }
+    };
 
     onCancelClick = (e) => {
         e.preventDefault();
         const {cancelRequest} = this.props;
         cancelRequest();
+    };
+
+    onReloadClick = (e) => {
+        e.preventDefault();
+        this.fetchTodos();
     };
 
     render() {
@@ -28,6 +39,7 @@ export class VisibleTodoList extends Component {
                     {...this.props}
                 />
                 <button onClick={this.onCancelClick}>Cancel</button>
+                <button onClick={this.onReloadClick}>Reload</button>
             </section>
         );
     }
