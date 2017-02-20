@@ -33,14 +33,13 @@ export class VisibleTodoList extends Component {
     };
 
     render() {
-        let loading;
-        if(this.props.isFetching) {
-            loading = (<span>Loading</span>);
+        const {isFetching, todos} = this.props;
+        if(isFetching && !todos.length) {
+            return (<span>Loading...</span>);
         }
 
         return (
             <section>
-                {loading}
                 <TodoList
                     {...this.props}
                 />
