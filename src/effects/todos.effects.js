@@ -7,6 +7,7 @@ export const fetchingTodoEpic = action$ =>
                return API.getTodosAPI(action.payload.filter)
                          .map((response) =>
                                   fetchingTodoSuccessAction(response, action.payload.filter))
+                         .takeUntil(action$.ofType('CANCEL_REQUEST'))
                          .catch(err =>
                                     fetchingTodoFaildAction(err, action.payload.filter)
                          );

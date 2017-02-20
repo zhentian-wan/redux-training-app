@@ -11,7 +11,7 @@ export class VisibleTodoList extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.params.filter !== prevProps.params.filter) {
+        if (this.props.params.filter !== prevProps.params.filter) {
             this.fetchTodos();
         }
     }
@@ -23,7 +23,7 @@ export class VisibleTodoList extends Component {
 
     onCancelClick = (e) => {
         e.preventDefault();
-        const {cancelRequest} = this.props;
+        const { cancelRequest } = this.props;
         cancelRequest();
     };
 
@@ -33,9 +33,14 @@ export class VisibleTodoList extends Component {
     };
 
     render() {
-        const {isFetching, todos} = this.props;
-        if(isFetching && !todos.length) {
-            return (<span>Loading...</span>);
+        const { isFetching, todos } = this.props;
+        if (isFetching && !todos.length) {
+            return (
+                <div>
+                    Loading...
+                    <button onClick={this.onCancelClick}>Cancel</button>
+                </div>
+            );
         }
 
         return (
@@ -43,7 +48,7 @@ export class VisibleTodoList extends Component {
                 <TodoList
                     {...this.props}
                 />
-                <button onClick={this.onCancelClick}>Cancel</button>
+
                 <button onClick={this.onReloadClick}>Reload</button>
             </section>
         );
