@@ -9,4 +9,4 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-export {getVisibleTodos} from './todos.reducer';
+export {getVisibleTodos, isFetchingTodos} from './todos.reducer';

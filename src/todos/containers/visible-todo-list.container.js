@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { TodoList } from '../components';
 import { toggleTodoAction, fetchingTodosAction, cancelRequestAction } from '../../actions'
-import { getVisibleTodos } from '../../reducers';
+import { getVisibleTodos, isFetchingTodos } from '../../reducers';
 
 export class VisibleTodoList extends Component {
     componentDidMount() {
@@ -33,8 +33,14 @@ export class VisibleTodoList extends Component {
     };
 
     render() {
+        let loading;
+        if(this.props.isFetching) {
+            loading = (<span>Loading</span>);
+        }
+
         return (
             <section>
+                {loading}
                 <TodoList
                     {...this.props}
                 />
@@ -62,7 +68,8 @@ export class VisibleTodoList extends Component {
  * */
     // By using withRouter, we get router's params injected into our function
 const mapStateToProps = (state, { params }) => ({
-        todos: getVisibleTodos(params.filter, state)
+        todos: getVisibleTodos(params.filter, state),
+        isFetching: isFetchingTodos(state, params.filter)
     });
 
 /*
