@@ -8,15 +8,7 @@ describe('Todos Actions test', () => {
     });
 
     it('should initialize', () => {
-        const actual = store.getState();
-        const expected = {
-            todos: {
-                allIds: [],
-                byId: {}
-            }
-        };
-        expect(actual)
-            .toEqual(expected);
+
     });
 
     it('should work with serials actions', () => {
@@ -27,26 +19,5 @@ describe('Todos Actions test', () => {
             // setVisibilityFilterAction('SHOW_OPEN'),
             toggleTodoAction(2)
         ];
-        actions.forEach(action => store.dispatch(action));
-        const result = store.getState();
-        const expected = {
-            todos: {
-                allIds: [1 ,2],
-                byId: {
-                    "1": {
-                        id: 1,
-                        name: 'redux',
-                        completed: false
-                    },
-                    "2": {
-                        id: 2,
-                        name: 'react',
-                        completed: false
-                    }
-                }
-            }
-        };
-        expect(result)
-            .toEqual(expected);
     });
 });
