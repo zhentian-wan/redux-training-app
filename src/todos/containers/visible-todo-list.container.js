@@ -1,9 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router';
 import { TodoList } from '../components';
-import { toggleTodoAction } from '../../actions'
-import {TodosSelector} from '../../reducers';
+import { toggleTodoAction, fetchingTodosAction } from '../../actions'
+import {getVisibleTodos} from '../../reducers';
+
+export class VisibleTodoList extends Component {
+    componentDidMount() {
+        const {params: {filter = 'all'}, fetchingTodos} = this.props;
+        fetchingTodos(filter);
+    }
+
+    componentWillUpdate(preProps, nextProps) {
+
+    }
+
+    render() {
+        return (
+            <TodoList
+                {...this.props}
+            />
+        );
+    }
+}
 
 /**
  * Problem for this mapStateToProps:
@@ -22,7 +41,7 @@ import {TodosSelector} from '../../reducers';
  * */
 // By using withRouter, we get router's params injected into our function
 const mapStateToProps = (state, {params}) => ({
-    todos: TodosSelector.getVisibleTodos(params.filter, state)
+    todos: getVisibleTodos(params.filter, state)
 });
 
 
@@ -44,7 +63,17 @@ const mapDispatchToProps = (dispatch) => ({
 *
 * mapDispatchToProps: using connect to pass callback to make it available to TodoList component
 * */
+/*
 export const VisibleTodoList = withRouter(connect(
     mapStateToProps,
     {onTodoClick: toggleTodoAction}
 )(TodoList));
+*/
+
+VisibleTodoList = withRouter(connect(
+    mapStateToProps,
+    {
+        onTodoClick: toggleTodoAction,
+        fetchingTodos: fetchingTodosAction
+    }
+)(VisibleTodoList));

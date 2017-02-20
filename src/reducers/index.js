@@ -7,4 +7,4 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-export {TodosSelector} from './selectors';
+export {getVisibleTodos} from './todos.reducer';

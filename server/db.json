@@ -1,0 +1,28 @@
+{
+  "all": [
+    {
+      "id": 0,
+      "name": "redux",
+      "completed": false
+    },
+    {
+      "id": 10,
+      "name": "react",
+      "completed": true
+    }
+  ],
+  "completed": [
+    {
+      "id": 0,
+      "name": "redux",
+      "completed": false
+    }
+  ],
+  "open": [
+    {
+      "id": 10,
+      "name": "react",
+      "completed": true
+    }
+  ]
+}
