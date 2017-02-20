@@ -1,8 +1,7 @@
 import {createStore, applyMiddleware} from 'redux';
-import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import rootReducer from './reducers';
 import createLogger from 'redux-logger';
-import {fetchingTodoEpic} from './effects';
+import epicMiddleware from './effects';
 
 export const configStore = (initialState) => {
 
@@ -11,8 +10,6 @@ export const configStore = (initialState) => {
         middlewares.push(createLogger());
     }
 
-    const rootEpic = combineEpics(fetchingTodoEpic);
-    const epicMiddleware = createEpicMiddleware(rootEpic);
     middlewares.push(epicMiddleware);
 
     return createStore(rootReducer,

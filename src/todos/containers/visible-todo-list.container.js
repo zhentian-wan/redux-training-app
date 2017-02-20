@@ -1,25 +1,56 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
 import { TodoList } from '../components';
-import { toggleTodoAction, fetchingTodosAction } from '../../actions'
-import {getVisibleTodos} from '../../reducers';
+import { toggleTodoAction, fetchingTodosAction, cancelRequestAction } from '../../actions'
+import { getVisibleTodos, isFetchingTodos } from '../../reducers';
 
 export class VisibleTodoList extends Component {
     componentDidMount() {
-        const {params: {filter = 'all'}, fetchingTodos} = this.props;
+        this.fetchTodos();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.params.filter !== prevProps.params.filter) {
+            this.fetchTodos();
+        }
+    }
+
+    fetchTodos = () => {
+        const { params: { filter = 'all' }, fetchingTodos } = this.props;
         fetchingTodos(filter);
-    }
+    };
 
-    componentWillUpdate(preProps, nextProps) {
+    onCancelClick = (e) => {
+        e.preventDefault();
+        const { cancelRequest } = this.props;
+        cancelRequest();
+    };
 
-    }
+    onReloadClick = (e) => {
+        e.preventDefault();
+        this.fetchTodos();
+    };
 
     render() {
+        const { isFetching, todos } = this.props;
+        if (isFetching && !todos.length) {
+            return (
+                <div>
+                    Loading...
+                    <button onClick={this.onCancelClick}>Cancel</button>
+                </div>
+            );
+        }
+
         return (
-            <TodoList
-                {...this.props}
-            />
+            <section>
+                <TodoList
+                    {...this.props}
+                />
+
+                <button onClick={this.onReloadClick}>Reload</button>
+            </section>
         );
     }
 }
@@ -39,11 +70,11 @@ export class VisibleTodoList extends Component {
    });
  *
  * */
-// By using withRouter, we get router's params injected into our function
-const mapStateToProps = (state, {params}) => ({
-    todos: getVisibleTodos(params.filter, state)
-});
-
+    // By using withRouter, we get router's params injected into our function
+const mapStateToProps = (state, { params }) => ({
+        todos: getVisibleTodos(params.filter, state),
+        isFetching: isFetchingTodos(state, params.filter)
+    });
 
 /*
 * This mapDispatchToProps can use shorthand syntax since
@@ -74,6 +105,7 @@ VisibleTodoList = withRouter(connect(
     mapStateToProps,
     {
         onTodoClick: toggleTodoAction,
-        fetchingTodos: fetchingTodosAction
+        fetchingTodos: fetchingTodosAction,
+        cancelRequest: cancelRequestAction
     }
 )(VisibleTodoList));

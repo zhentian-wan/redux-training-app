@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {addTodoAction} from '../../actions'
 
 let nextTodoId = 0;
 
-export let AddTodo = ({ dispatch }) => {
+export let AddTodo = ({ dispatch, params }) => {
     let input;
 
     const onButtonClick = () => {
@@ -52,4 +53,4 @@ AddTodo = connect(
 * AddTodo = connect()(AddTodo);
 * */
 
-AddTodo = connect()(AddTodo);
+AddTodo = withRouter(connect()(AddTodo));

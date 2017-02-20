@@ -4,5 +4,7 @@ export {
     setVisibilityFilterAction,
     fetchingTodoSuccessAction,
     fetchingTodosAction,
-    fetchingTodoFaildAction
+    fetchingTodoFaildAction,
+    cancelRequestAction,
+    addTodoSuccessAction
 } from './todos.action';

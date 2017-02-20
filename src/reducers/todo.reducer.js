@@ -14,7 +14,7 @@ const toggleTodo = (state, action) => {
 * */
 const todoReducer = (state = {}, action) => {
     switch(action.type){
-        case 'ADD_TODO':
+        case 'ADD_TODO_SUCCESS':
             return {
                 id: action.payload.id,
                 name: action.payload.name,
