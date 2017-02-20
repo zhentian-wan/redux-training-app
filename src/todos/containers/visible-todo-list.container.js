@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
 import { TodoList } from '../components';
-import { toggleTodoAction, fetchingTodosAction } from '../../actions'
-import {getVisibleTodos} from '../../reducers';
+import { toggleTodoAction, fetchingTodosAction, cancelRequestAction } from '../../actions'
+import { getVisibleTodos } from '../../reducers';
 
 export class VisibleTodoList extends Component {
     componentDidMount() {
-        const {params: {filter = 'all'}, fetchingTodos} = this.props;
+        const { params: { filter = 'all' }, fetchingTodos } = this.props;
         fetchingTodos(filter);
     }
 
@@ -15,11 +15,20 @@ export class VisibleTodoList extends Component {
 
     }
 
+    onCancelClick = (e) => {
+        e.preventDefault();
+        const {cancelRequest} = this.props;
+        cancelRequest();
+    };
+
     render() {
         return (
-            <TodoList
-                {...this.props}
-            />
+            <section>
+                <TodoList
+                    {...this.props}
+                />
+                <button onClick={this.onCancelClick}>Cancel</button>
+            </section>
         );
     }
 }
@@ -39,11 +48,10 @@ export class VisibleTodoList extends Component {
    });
  *
  * */
-// By using withRouter, we get router's params injected into our function
-const mapStateToProps = (state, {params}) => ({
-    todos: getVisibleTodos(params.filter, state)
-});
-
+    // By using withRouter, we get router's params injected into our function
+const mapStateToProps = (state, { params }) => ({
+        todos: getVisibleTodos(params.filter, state)
+    });
 
 /*
 * This mapDispatchToProps can use shorthand syntax since
@@ -74,6 +82,7 @@ VisibleTodoList = withRouter(connect(
     mapStateToProps,
     {
         onTodoClick: toggleTodoAction,
-        fetchingTodos: fetchingTodosAction
+        fetchingTodos: fetchingTodosAction,
+        cancelRequest: cancelRequestAction
     }
 )(VisibleTodoList));

@@ -45,3 +45,7 @@ export const fetchingTodoFaildAction = (error, filter) => ({
         filter
     }
 });
+
+export const cancelRequestAction = () => ({
+    type: 'CANCEL_REQUEST'
+});
