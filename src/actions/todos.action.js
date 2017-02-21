@@ -38,12 +38,15 @@ export const fetchingTodoSuccessAction = (response, filter) => ({
         filter
     }
 });
-export const fetchingTodoFaildAction = (error) => ({
-    type: 'FETCHING_TODOS_FAILD',
-    payload: {
-        message: error.xhr.response.message
-    }
-});
+export const fetchingTodoFaildAction = (error, filter) => {
+    return {
+        type: 'FETCHING_TODOS_FAILD',
+        payload: {
+            message: error.xhr.response.message,
+            filter
+        }
+    };
+};
 
 export const cancelRequestAction = () => ({
     type: 'CANCEL_REQUEST'

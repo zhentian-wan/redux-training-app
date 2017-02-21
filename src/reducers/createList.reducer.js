@@ -43,9 +43,22 @@ const createList = (filter) => {
         }
     };
 
+    const errorMessage = (state = null, action) => {
+        switch(action.type) {
+            case 'FETCHING_TODOS_FAILD':
+                return action.payload.message;
+            case 'FETCHING_TODOS':
+            case 'FETCHING_TODOS_SUCCESS':
+                return null;
+            default:
+                return state;
+        }
+    };
+
     return combineReducers({
                                ids,
-                               isFetching
+                               isFetching,
+                               errorMessage
                            })
 };
 
@@ -53,3 +66,4 @@ export default createList;
 
 export const getIds = (state) => state.ids;
 export const isFetchingTodos = (state) => state.isFetching;
+export const getErrorMessage = (state) => state.errorMessage;

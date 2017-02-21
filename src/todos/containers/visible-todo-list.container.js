@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { TodoList } from '../components';
 import { toggleTodoAction, fetchingTodosAction, cancelRequestAction } from '../../actions'
-import { getVisibleTodos, isFetchingTodos } from '../../reducers';
+import { getVisibleTodos, isFetchingTodos, getErrorMessage  } from '../../reducers';
+import {FetchError} from '../components/fetchError';
 
 export class VisibleTodoList extends Component {
     componentDidMount() {
@@ -33,13 +34,22 @@ export class VisibleTodoList extends Component {
     };
 
     render() {
-        const { isFetching, todos } = this.props;
+        const { isFetching, todos, errorMessage } = this.props;
         if (isFetching && !todos.length) {
             return (
                 <div>
                     Loading...
                     <button onClick={this.onCancelClick}>Cancel</button>
                 </div>
+            );
+        }
+
+        if(errorMessage && !todos.length) {
+            return (
+                <FetchError
+                    message={errorMessage}
+                    onRetry={this.fetchTodos}
+                />
             );
         }
 
@@ -73,6 +83,7 @@ export class VisibleTodoList extends Component {
     // By using withRouter, we get router's params injected into our function
 const mapStateToProps = (state, { params }) => ({
         todos: getVisibleTodos(params.filter, state),
+        errorMessage: getErrorMessage(params.filter, state),
         isFetching: isFetchingTodos(state, params.filter)
     });
 

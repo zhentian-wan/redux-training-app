@@ -23,6 +23,10 @@ export const getVisibleTodos = (filter, state) => {
     return ids.map(id => fromById.getTodo(state.todos.byId, id));
 };
 
+export const getErrorMessage = (filter, state) => {
+    return fromList.getErrorMessage(state.todos.listByFilter[filter]);
+};
+
 export const isFetchingTodos = (state, filter) => {
     return fromList.isFetchingTodos(state.todos.listByFilter[filter]);
 };
