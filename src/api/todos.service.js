@@ -18,6 +18,15 @@ export const getTodosAPI = (filter) => {
                          .dematerialize()
     } else {
         return Observable.ajax(`${baseURL}/${filter}`)
+                         .retryWhen((err) => err.delay(3000)
+                                                .take(3)
+                                                .concat(Observable.throw({
+                                                                             xhr: {
+                                                                                 response: {
+                                                                                     message: 'CANNOT FETCH TODOS'
+                                                                                 }
+                                                                             }
+                                                                         })))
                          .delay(1000)
                          .map(data => data.response);
     }

@@ -4,6 +4,7 @@ import {
     fetchingTodoFaildAction,
     addTodoSuccessAction
 } from '../actions';
+import { Observable } from 'rxjs';
 
 export const fetchingTodoEpic = action$ =>
     action$.ofType('FETCHING_TODOS')
@@ -12,12 +13,10 @@ export const fetchingTodoEpic = action$ =>
                          .map((response) =>
                                   fetchingTodoSuccessAction(response, action.payload.filter))
                          .takeUntil(action$.ofType('CANCEL_REQUEST'))
-                         .catch(err =>
-                                    fetchingTodoFaildAction(err, action.payload.filter)
-                         );
+                         .catch((err) => Observable.of(fetchingTodoFaildAction(err, action.payload.filter)));
            });
 
 export const addTodoEpic = action$ =>
     action$.ofType('ADD_TODO')
-        .switchMap((action) => API.addTodoAPI(action.payload))
-        .map((response) => addTodoSuccessAction(response));
+           .switchMap((action) => API.addTodoAPI(action.payload))
+           .map((response) => addTodoSuccessAction(response));
