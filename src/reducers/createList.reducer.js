@@ -8,20 +8,18 @@ import { combineReducers } from 'redux';
 * without having to change your components or your tests
 * if you use selectors together with reducers in your tests.
 * */
-
 const createList = (filter) => {
     const ids = (state = [], action) => {
         switch( action.type ) {
             case 'FETCHING_TODOS_SUCCESS':
-                if (action.payload && action.payload.filter !== filter) {
+                if(action.payload.filter !== filter){
                     return state;
                 }
-                return action.payload.response.map(todo => todo.id);
+                return action.payload.response.result;
             case 'ADD_TODO_SUCCESS':
-                if(action.payload && action.payload.filter === 'completed') {
-                    return state
-                }
-                return [...state, action.payload.id];
+                return filter !== 'completed' ?
+                [...state, action.response.result]:
+                state;
             default:
                 return state;
         }

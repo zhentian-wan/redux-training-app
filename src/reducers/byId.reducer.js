@@ -11,7 +11,17 @@ import todoReducer from './todo.reducer';
 
 // Generate {[id]: todoItem} pair
 
-const byId = (state = {}, action) => {
+/*
+*  Problem for current reducer:
+*  Current reducer needs to handle different state data type.
+*  For example, in FETCHING_TODOS_SUCCESS, we need to transform
+*  array to todos into a an object.
+*  And for ADD_TODO_SUCCESS, we need to add item into object.
+*
+*  Solution:
+*  What we want is the same data response type.
+*  So that we can simply our reducer.
+
     let nextState;
     switch( action.type ) {
         case 'FETCHING_TODOS_SUCCESS':
@@ -24,6 +34,22 @@ const byId = (state = {}, action) => {
             return {
                 ...state,
                 [action.payload.id]: todoReducer(state, action)
+            };
+        case 'TOGGLE_TODO':
+            return Object.assign({}, state, {
+                [action.payload.id]: todoReducer(getTodo(state, action.payload.id), action)
+            });
+        default:
+            return state;
+    }
+* */
+const byId = (state = {}, action) => {
+    switch( action.type ) {
+        case 'FETCHING_TODOS_SUCCESS':
+        case 'ADD_TODO_SUCCESS':
+            return {
+                ...state,
+                ...action.payload.response.entities.todos
             };
         case 'TOGGLE_TODO':
             return Object.assign({}, state, {
