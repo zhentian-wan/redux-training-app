@@ -13,3 +13,4 @@ export const Footer = () => (
         <FooterLink filter="open">Open</FooterLink>
     </p>
 );
+Footer.displayName = "myFooter";
