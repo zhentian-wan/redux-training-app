@@ -53,7 +53,10 @@ const byId = (state = {}, action) => {
             };
         case 'TOGGLE_TODO':
             return Object.assign({}, state, {
-                [action.payload.id]: todoReducer(getTodo(state, action.payload.id), action)
+                [action.payload.id]: todoReducer(
+                    getTodo(state, action.payload.id),
+                    action
+                )
             });
         default:
             return state;

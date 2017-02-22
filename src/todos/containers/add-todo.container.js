@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {addTodoAction} from '../../actions'
 
-let nextTodoId = 0;
-
 export let AddTodo = ({ dispatch, params }) => {
     let input;
 
