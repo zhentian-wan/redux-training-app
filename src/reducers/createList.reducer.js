@@ -18,7 +18,7 @@ const createList = (filter) => {
                 return action.payload.response.result;
             case 'ADD_TODO_SUCCESS':
                 return filter !== 'completed' ?
-                [...state, action.response.result]:
+                [...state, action.payload.response.result]:
                 state;
             default:
                 return state;

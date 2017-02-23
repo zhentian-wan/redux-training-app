@@ -1,6 +1,14 @@
 import React from 'react';
 
-export const Todo = ({completed, name, onClick}) => (
+import ReactCssTransitionGroup from 'react-addons-css-transition-group';
+
+export const Todo = ({completed, id, name, onClick}) => (
+    <ReactCssTransitionGroup
+        key={id}
+        transitionName="example"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+    >
     <li
         onClick={onClick}
         style={{
@@ -9,4 +17,5 @@ export const Todo = ({completed, name, onClick}) => (
                 'line-through' :
                 'none'
         }}>{name}</li>
+    </ReactCssTransitionGroup>
 );

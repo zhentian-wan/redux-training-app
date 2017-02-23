@@ -57,5 +57,7 @@ export const cancelRequestAction = () => ({
 
 export const addTodoSuccessAction = (response) => ({
     type: 'ADD_TODO_SUCCESS',
-    payload: normalize(response, schema.todoSchema)
+    payload: {
+        response: normalize(response, schema.todoSchema)
+    }
 });
