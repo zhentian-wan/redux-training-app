@@ -32,8 +32,13 @@ export const getTodosAPI = (filter) => {
     }
 };
 
+
 export const addTodoAPI = ({ id, name }) => {
-    /*Call api twice for json-server hack*/
+    /*
+        Call api twice for json-server hack,
+        can also write small function for different api call
+        and concat those in effects
+    */
     return Observable.ajax({
                                method: 'POST',
                                url: `${baseURL}/all`,

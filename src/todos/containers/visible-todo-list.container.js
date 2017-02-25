@@ -81,10 +81,10 @@ export class VisibleTodoList extends Component {
  *
  * */
     // By using withRouter, we get router's params injected into our function
-const mapStateToProps = (state, { params }) => ({
-        todos: getVisibleTodos(params.filter, state),
-        errorMessage: getErrorMessage(params.filter, state),
-        isFetching: isFetchingTodos(state, params.filter)
+const mapStateToProps = (state, { params: {filter = 'all'} }) => ({
+        todos: getVisibleTodos(filter, state),
+        errorMessage: getErrorMessage(filter, state),
+        isFetching: isFetchingTodos(state, filter)
     });
 
 /*
