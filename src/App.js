@@ -3,5 +3,5 @@ import './App.css';
 
 import { TodoApp } from './todos';
 
-export const App = () => <TodoApp />;
+export const App = () => <div className="container"><TodoApp /></div>;
 

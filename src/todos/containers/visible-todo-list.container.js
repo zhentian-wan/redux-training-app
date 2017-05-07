@@ -54,7 +54,7 @@ export class VisibleTodoList extends Component {
         }
 
         return (
-            <section>
+            <section className="todo-list">
                 <TodoList
                     {...this.props}
                 />

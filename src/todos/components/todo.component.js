@@ -11,11 +11,10 @@ export const Todo = ({completed, id, name, onClick}) => (
     >
     <li
         onClick={onClick}
-        style={{
-            textDecoration:
-                completed ?
-                'line-through' :
-                'none'
-        }}>{name}</li>
+        className={
+            completed ?
+                "todo-list__item--completed" :
+                "todo-list__item--active"
+        }>{name}</li>
     </ReactCssTransitionGroup>
 );

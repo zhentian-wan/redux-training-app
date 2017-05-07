@@ -6,7 +6,7 @@ export class TodoApp extends Component {
 
     render() {
         return (
-            <section>
+            <section className="todo-app">
                 <AddTodo />
                 <VisibleTodoList />
                 <Footer />
