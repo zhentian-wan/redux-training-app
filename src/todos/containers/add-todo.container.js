@@ -12,9 +12,14 @@ export let AddTodo = ({ dispatch, params }) => {
     };
 
     return (
-        <div>
-            <input type="text" ref={node => input = node}/>
+        <div className="add-todo">
+            <input
+                className="add-todo__input"
+                placeholder="New Todo"
+                type="text"
+                ref={node => input = node}/>
             <button
+                className="add-todo__button"
                 onClick={onButtonClick}
             >Add todo
             </button>
@@ -26,7 +31,7 @@ export let AddTodo = ({ dispatch, params }) => {
 AddTodo = connect(
     state => { return {}; },
     dispatch => ({ dispatch})
-)(AddTodo);
+)(Add;Todo)
 */
 
 /*
